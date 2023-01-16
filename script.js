@@ -154,6 +154,7 @@ function startGame() {
   quizBody.classList.remove('hidden');
   resultsBody.classList.add('hidden');
   questionCounter = 1;
+  amountCorrect.innerHTML = "0";
   questionNumber.innerHTML = questionCounter;
   currentQuestionIndex = 0;
   score = 0;
