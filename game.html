@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Trivia Quiz</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body class="blue-bg">
+  <div class="container white-bg">
+
+    <div id="quiz-body">
+      <div id="question-info">
+        <p><span id="amt-correct">0</span> out of 10 correct</p>
+        <h1>Question <span id="question-number">1</span></h1>
+        <p id="category">Geometry</p>
+      </div>
+
+      <p id="question">Question placeholder here lorem ipsum?</p>
+
+      <div id="choice-container">
+        <!-- <button class="question-btn">Answer</button>
+        <button class="question-btn">Answer</button>
+        <button class="question-btn">Answer</button>
+        <button class="question-btn">Answer</button> -->
+      </div>
+
+      <button id="next-question" class="btn btn-disabled">Next Question</button>
+    </div>
+
+    <div id="results" class="hidden">
+      <span class="emoji">😎</span>
+      <h2>You got <span id="final-score">0</span> out of 10 correct</h2>
+      <button id="restart" class="btn btn-blue">Try Again</button>
+    </div>
+  </div>
+</body>
+
+</html>
