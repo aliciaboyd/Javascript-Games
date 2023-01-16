@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #3592F4;
+  --green: #0AC08A;
+  --green-gradient: linear-gradient(#0AC08A, #029E9E);
+  --blue-gradient: linear-gradient(#3592F4, #3757FF);
+  --false: #DE1A3D;
+  --text: #2B2B35;
+  --shadow: #2b2b3542;
+  --text-transparent: #2b2b357e;
+  --white: #F4F8FC;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Poppins', Arial, sans-serf;
+  /* overflow:s hidden; */
+}
+
+.white-bg {
+  background-color: var(--white);
+  color: var(--text);
+}
+
+.blue-bg {
+  background: var(--blue-gradient);
+  color: var(--white);
+}
+
+.container {
+  width: 100%;
+  margin: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+.btn {
+  padding: 1rem 1.25rem;
+  margin-top: 3rem;
+  border-radius: .25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transition: 200ms ease-in-out;
+  box-shadow: 2px 2px 20px var(--shadow);
+}
+
+.btn-light {
+  color: var(--blue);
+  border: none;
+  background-color: var(--white);
+}
+
+.btn-blue {
+  color: var(--white);
+  border: none;
+  background-color: var(--blue);
+}
+
+.quiz-intro h1 {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.quiz-intro p {
+  max-width: 260px;
+}
+
+p {
+  font-size: 1rem;
+}
