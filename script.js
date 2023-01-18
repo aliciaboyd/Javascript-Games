@@ -14,6 +14,7 @@ let score = 0;
 let questionCounter = 1;
 let currentQuestionIndex;
 let availableQuestions;
+let answeredQuestion;
 
 const allQuestions = [
   {
@@ -150,9 +151,11 @@ const allQuestions = [
 const maxQuestions = 10;
 
 function startGame() {
+  answeredQuestion = false;
   // RESETS VALUES
   quizBody.classList.remove('hidden');
   resultsBody.classList.add('hidden');
+  nextQuestionBtn.innerText = "Next Question";
   questionCounter = 1;
   amountCorrect.innerHTML = "0";
   questionNumber.innerHTML = questionCounter;
@@ -164,12 +167,17 @@ function startGame() {
 };
 
 function getNewQuestion() {
+
   resetState();
-  if (currentQuestionIndex + 1 > maxQuestions) {
+
+  if (currentQuestionIndex + 1 == maxQuestions) {
+    nextQuestionBtn.innerText = "Finish Quiz";
+    showQuestion(availableQuestions[currentQuestionIndex]);
+  } else if (currentQuestionIndex + 1 > maxQuestions) {
     showScore();
   } else {
     showQuestion(availableQuestions[currentQuestionIndex]);
-  }
+  };
 };
 
 function resetState() {
@@ -199,36 +207,43 @@ function selectAnswer(event) {
   const selectedButton = event.target;
   // const correct = selectedButton.dataset.correct;
 
-  Array.from(choiceContainer.children).forEach(button => {
-    setAnswerStatus(button, button.dataset.correct);
-  });
+  if (answeredQuestion == false) {
 
-  if (selectedButton.dataset.correct) {
-    selectedButton.classList.add('select-right')
-    score++;
-    amountCorrect.innerHTML = score;
-  } else {
-    selectedButton.classList.add('select-wrong')
-  }
+    answeredQuestion = true;
+
+    Array.from(choiceContainer.children).forEach(button => {
+      setAnswerStatus(button, button.dataset.correct);
+    });
+  
+    if (selectedButton.dataset.correct) {
+      selectedButton.classList.add('select-right')
+      score++;
+      amountCorrect.innerHTML = score;
+    } else {
+      selectedButton.classList.add('select-wrong')
+    }
+
+    function setAnswerStatus(element, correct) {
+      clearStatusClass(element);
+      if (correct) {
+        element.classList.add('correct')
+      } else {
+        element.classList.add('wrong')
+      };
+    
+      nextQuestionBtn.classList.remove('btn-disabled');
+      nextQuestionBtn.classList.add('btn-blue');
+    }
+  } else if (answeredQuestion == true) {
+    return;
+  }  
 };
-
-function setAnswerStatus(element, correct) {
-  clearStatusClass(element);
-  if (correct) {
-    element.classList.add('correct')
-  } else {
-    element.classList.add('wrong')
-  };
-
-  nextQuestionBtn.classList.remove('btn-disabled');
-  nextQuestionBtn.classList.add('btn-blue');
-
-}
 
 nextQuestionBtn.addEventListener('click', () => {
   if (nextQuestionBtn.classList.contains('btn-disabled')) {
     return;
   } else {
+    answeredQuestion = false;
     currentQuestionIndex++;
     getNewQuestion();
   
