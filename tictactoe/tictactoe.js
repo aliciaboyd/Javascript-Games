@@ -10,7 +10,7 @@ const winConditions = [
   [6, 7, 8],
   [0, 3, 6],
   [1, 4, 7],
-  [2, 5, 8],
+  [2, 5, 6],
   [0, 4, 8],
   [2, 4, 7],
 ];
@@ -26,10 +26,13 @@ let yWins = 0;
 
 function startGame() {
   changePlayer();
-  cells.forEach(cell => cell.addEventListener('click', selectCell));
-  cells.forEach(cell => {cell.innerText = ''} );
-  cells.forEach(cell => {cell.classList.remove("player1")});
-  cells.forEach(cell => {cell.classList.remove("player2")});
+  cells.forEach(cell => {
+    cell.addEventListener('click', selectCell);
+    cell.innerText = '';
+    cell.classList.remove("player1");
+    cell.classList.remove("player2");
+  });
+
   gameActive = true;
   statusText.innerText = `${currentPlayer}, its your turn!`;
   startBtn.innerText = "Restart";
@@ -40,6 +43,11 @@ function startGame() {
 }
 
 function selectCell() {
+  //checks if empty cell
+  if (this.innerText != "") {
+    return;
+  };
+
   // adds color classes
   if (!this.classList.contains("player1") && !this.classList.contains("player2")) {
     if (currentPlayer == "X") {
@@ -47,12 +55,8 @@ function selectCell() {
     }else if (currentPlayer == "Y") {
       this.classList.add("player2");
     };
-  }
-  //checks if empty cell
-  if (this.innerText != "") {
-    return;
-  }
-
+  };
+  
   //sets index in storage array, checks win condition
   options[this.getAttribute("data-cellIndex")] = currentPlayer;
   this.innerText = currentPlayer;
@@ -78,7 +82,7 @@ function checkWin() {
 
   if (roundWin) {
     gameActive = false;
-    statusText.innerText = `${currentPlayer} wins!`
+    statusText.innerText = `${currentPlayer} wins!`;
     if (currentPlayer == "X") {
       xWins += 1;
       winCountP1.innerText = xWins;
