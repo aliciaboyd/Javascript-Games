@@ -83,8 +83,10 @@ p {
 }
 
 .source-btn {
-  display: inline-block;
+  display: block;
   text-align: center;
+  margin-inline: auto;
+  width: 150px;
   margin-top: 2rem;
   padding: 1rem 2rem;
   border-radius: .25rem;
@@ -96,4 +98,11 @@ p {
 
 .source-btn:hover {
   background-color:rgb(0, 57, 114);
+}
+
+
+@media (max-width: 800px) {
+  main {
+    margin-inline: 2rem;
+  }
 }
